@@ -1,0 +1,5 @@
+# Project exclude paths
+/.gradle/
+/PredictionApp/target/
+/RbkApp/target/
+/WeatherApp/target/
