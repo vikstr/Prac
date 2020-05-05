@@ -3,10 +3,10 @@ package app;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Rate")
+@Table(name = "rate")
 public class Rate {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String date;
     private Double currency;

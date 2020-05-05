@@ -1,60 +1,32 @@
-
 version: '3'
-
 services:
-
   rbk:
-
     build:
-
       context: ./rbk
-
     ports:
-
       - "8060:8060"
-
     depends_on:
-
       - dbpostgresql
 
   weather:
-
     build:
-
       context: ./weather
-
       dockerfile: Dockerfile
-
     ports:
-
       - "8070:8070"
 
   prediction:
-
     build:
-
       context: ./prediction
-
       dockerfile: Dockerfile
-
     ports:
-
       - "8090:8090"
-
   dbpostgresql:
-
     image: postgres
-
     restart: always
-
     ports:
-
       - "5432:5432"
-
     environment:
-
       POSTGRES_DB: testdb
-
-      POSTGRES_USER: adminadmin
-
+      POSTGRES_USER: vikstr
       POSTGRES_PASSWORD: pwdpwd

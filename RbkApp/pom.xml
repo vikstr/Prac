@@ -10,7 +10,43 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>RbkApp</artifactId>
+    <dependencies>
 
+        <dependency>
+
+            <groupId>org.postgresql</groupId>
+
+            <artifactId>postgresql</artifactId>
+
+            <!--<version>9.1-901-1.jdbc4</version>-->
+
+            <version>42.2.9</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <!--<version>8.0.19</version>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -27,7 +63,12 @@
                     </archive>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.3.2</version>
 
+            </plugin>
         </plugins>
     </build>
 </project>
