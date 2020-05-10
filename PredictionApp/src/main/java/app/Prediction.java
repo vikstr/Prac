@@ -8,10 +8,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Prediction {
-    @Value("${app.address.dollars}")
-    String dollars;
     @Value("${app.address.weather}")
     String weather;
+    @Value("${app.address.dollars}")
+    String dollars;
     public Double predict(){
         RestTemplate restTemplate = new RestTemplate();
 
