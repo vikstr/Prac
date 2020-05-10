@@ -1,26 +1,36 @@
 version: '3'
 services:
-  rbc:
+  RbkApp:
     build:
-      context: ./rbc
+      context: ./RbkApp
+      dockerfile: Dockerfile
     ports:
       - "8060:8060"
     depends_on:
       - dbpostgresql
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.7
 
-  weather:
+  WeatherApp:
     build:
-      context: ./weather
+      context: ./WeatherApp
       dockerfile: Dockerfile
     ports:
       - "8070:8070"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
 
-  prediction:
+  PredictionApp:
     build:
-      context: ./prediction
+      context: ./PredictionApp
       dockerfile: Dockerfile
     ports:
       - "8090:8090"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
   dbpostgresql:
     image: postgres
     restart: always
@@ -30,16 +40,19 @@ services:
       POSTGRES_DB: testdb
       POSTGRES_USER: adminadmin
       POSTGRES_PASSWORD: pwdpwd
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.9
 
-pgadmin:
-  image: dpage/pgadmin4
-  ports:
-    - "5432:5432"
-  depends_on:
-    - dbpostgresql
-  environment:
-    - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
-    - PGADMIN_DEFAULT_PASSWORD=postgres
-  networks:
-    vpcbr:
-      ipv4_address: 10.5.0.9
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    depends_on:
+      - dbpostgresql
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.10
