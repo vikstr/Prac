@@ -17,7 +17,7 @@ public class RBKController {
     @Autowired
     private RBKService rbkService;
 
-    @RequestMapping(value = "/rbk")
+    @RequestMapping(value = "/dollarsMax")
     public Double index() {
         Double ans = rbkService.getMaxCurrency();
         return ans;

@@ -1,8 +1,8 @@
 version: '3'
 services:
-  rbk:
+  rbc:
     build:
-      context: ./rbk
+      context: ./rbc
     ports:
       - "8060:8060"
     depends_on:
@@ -28,5 +28,18 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_DB: testdb
-      POSTGRES_USER: vikstr
+      POSTGRES_USER: adminadmin
       POSTGRES_PASSWORD: pwdpwd
+
+pgadmin:
+  image: dpage/pgadmin4
+  ports:
+    - "5432:5432"
+  depends_on:
+    - dbpostgresql
+  environment:
+    - PGADMIN_DEFAULT_EMAIL=admin@mydomain.com
+    - PGADMIN_DEFAULT_PASSWORD=postgres
+  networks:
+    vpcbr:
+      ipv4_address: 10.5.0.9
