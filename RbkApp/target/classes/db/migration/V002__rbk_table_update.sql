@@ -1,0 +1,2 @@
+ALTER TABLE IF EXISTS rate.rate
+    ALTER COLUMN date SET DATA TYPE varchar(50);
