@@ -1,0 +1,8 @@
+app\JsonParsing\WTemperature.class
+app\WeatherController.class
+app\WeatherService.class
+app\JsonParsing\JsonParser.class
+app\JsonParsing\TempOneDayData.class
+app\JsonParsing\TempOneDay.class
+app\Application.class
+app\WeatherController$MaxRestController.class

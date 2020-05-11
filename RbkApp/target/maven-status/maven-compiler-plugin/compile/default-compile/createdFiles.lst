@@ -1,0 +1,6 @@
+app\RBKServiceImpl.class
+app\RBKController.class
+app\RBKService.class
+app\Application.class
+app\Rate.class
+app\DbWorker.class

@@ -52,7 +52,6 @@ public class RBKService {
         } else return Double.valueOf(-1);
     }
 
-    @GetMapping("/getRBK")
     public Double getMaxCurrency() {
         Double maxCurrency;
 

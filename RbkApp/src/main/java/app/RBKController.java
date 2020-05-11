@@ -17,10 +17,13 @@ public class RBKController {
     @Autowired
     private RBKService rbkService;
 
-    @RequestMapping(value = "/dollarsMax")
+    @RequestMapping(value = "/dollarsMax",method = RequestMethod.GET)
     public Double index() {
         Double ans = rbkService.getMaxCurrency();
         return ans;
     }
-
+    @RequestMapping(value = "/ping")
+    public String ping(){
+        return ("I'm working.");
+    }
 }

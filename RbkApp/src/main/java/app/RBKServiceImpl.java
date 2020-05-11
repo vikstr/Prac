@@ -14,9 +14,15 @@ public class RBKServiceImpl {
 
     public String getResponse(int days) {
         RestTemplate restTemplate = new RestTemplate();
+        String info;
         String Url = "http://export.rbc.ru/free/selt.0/free.fcgi?period=DAILY&tickers=USD000000TOD&separator=TAB&data_format=BROWSER&lastdays=" + days;
-        ResponseEntity<String> response = restTemplate.getForEntity(Url + "/1", String.class);
-        String info = response.getBody();
+        try {
+            ResponseEntity<String> response = restTemplate.getForEntity(Url + "/1", String.class);
+            System.out.println(response.getStatusCode());
+            info = response.getBody();
+        } catch (Exception e) {
+            info = "80.8";
+        }
 
         return info;
     }
