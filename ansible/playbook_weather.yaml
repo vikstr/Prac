@@ -1,0 +1,33 @@
+- hosts: weather-server
+  remote_user: edumfti
+  become: yes
+
+  vars:
+    ansible_become_user: root
+    ansible_become_password: aNSHaPi
+  
+  tasks:
+    - name: delete previous directory
+      shell: rm -rf ./edu/vikstr
+
+    - name: make a directory for lab-4
+      shell: mkdir edu/vikstr
+
+    - name: copy weatherapp module
+      copy:
+        src: ./weatherapp/target/WeatherApp-0.1.0.jar
+        dest: edu/vikstr/
+  
+    - name: copy Dockerfile for weatherapp module
+      copy:
+        src: ./weatherapp/Dockerfile
+        dest: edu/vikstr/
+        
+    - name: load image for weatherapp module
+      docker_image:
+        name: g_weather_app
+        path: ./edu/vikstr
+        source: build 
+ 
+    - name: run a Dockerfile
+      shell: sudo docker run -d  g_weather_app

@@ -2,7 +2,7 @@ version: '3'
 services:
   rbkapp:
     build:
-      context: ./rbkapp
+      context: ./RbkApp
       dockerfile: Dockerfile
     ports:
       - "8060:8060"
@@ -14,7 +14,7 @@ services:
 
   weatherapp:
     build:
-      context: ./weatherapp
+      context: ./WeatherApp
       dockerfile: Dockerfile
     ports:
       - "8070:8070"
@@ -24,7 +24,7 @@ services:
 
   predictionapp:
     build:
-      context: ./predictionapp
+      context: ./PredictionApp
       dockerfile: Dockerfile
     ports:
       - "8090:8090"

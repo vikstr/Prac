@@ -1,0 +1,15 @@
+version: '3'
+services:
+  weatherapp:
+    build:
+      context: ./WeatherApp
+      dockerfile: Dockerfile
+    ports:
+      - "8070:8070"
+
+  predictionapp:
+    build:
+      context: ./PredictionApp
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
