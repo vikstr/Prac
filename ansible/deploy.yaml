@@ -6,23 +6,32 @@
   vars:
     ansible_become_user: root
     ansible_become_password: cHONtic
+
   tasks:
     - name: delete previous directory
       shell: rm -rf ./edu/vikstr
 
     - name: make a directory for rbc module
       shell: mkdir edu/vikstr/
-   
-    - name: make a directory for rbc module
-      shell: mkdir edu/vikstr/rbkapp
+
 
     - name: make a directory for rbc module
-      shell: mkdir edu/vikstr/rbkapp/target 
-    
+      shell: mkdir edu/vikstr/rbc
+
+    - name: make a directory for rbc module
+      shell: mkdir edu/vikstr/rbc/target
+
     - name: copy rbc module
-      copy: 
-        src: ../RbkApp/target/RBKApp-0.1.0.jar 
-        dest: edu/vikstr/rbkapp
+      copy:
+        src: ../RbkApp/target/RbkApp-0.1.0.jar
+        dest: edu/vikstr/rbc/target
+
+    - name: copy rbc Dockerfile module
+      copy:
+        src: ../RbkApp/Dockerfile
+        dest: edu/vikstr/rbc/
+        mode: 0777
+
 
     - name: copy docker-compose rbc module
       copy:
@@ -30,9 +39,7 @@
         dest: edu/vikstr/
 
     - name: run a compose rbc file
-      shell: docker-compose -f ./edu/vikstr/docker-compose-rbc.yml up -d
-
-    
+      shell: sudo docker-compose -f ./edu/vikstr/docker-compose-rbc.yml up -d
 
 - hosts: weather-predict-server
   remote_user: edumfti
@@ -46,36 +53,38 @@
       shell: mkdir edu/vikstr/
 
     - name: make a directory for predict module
-      shell: mkdir edu/vikstr/predictionapp
+      shell: mkdir edu/vikstr/predict
 
     - name: make a directory for predict module
-      shell: mkdir edu/vikstr/predictionapp/target
+      shell: mkdir edu/vikstr/predict/target
 
     - name: make a directory for weather module
-      shell: mkdir edu/vikstr/weatherapp
+      shell: mkdir edu/vikstr/weather
 
     - name: make a directory for weather module
-      shell: mkdir edu/vikstr/weatherapp/target
+      shell: mkdir edu/vikstr/weather/target
 
     - name: copy weather module
       copy:
         src: ../WeatherApp/target/WeatherApp-0.1.0.jar
-        dest: edu/vikstr/weatherapp/target
+        dest: edu/vikstr/weather/target
 
     - name: copy wether Dockerfile module
       copy:
-        src: ../weatherapp/Dockerfile
-        dest: edu/vikstr/weatherapp/
+        src: ../WeatherApp/Dockerfile
+        dest: edu/vikstr/weather/
+        mode: 0777
 
     - name: copy predict module
       copy:
         src: ../PredictionApp/target/PredictionApp-0.1.0.jar
-        dest: edu/vikstr/predictionapp/target
+        dest: edu/vikstr/predict/target
 
     - name: copy predict Dockerfile module
       copy:
-        src: ../predictionapp/Dockerfile
-        dest: edu/vikstr/predictionapp/
+        src: ../PredictionApp/Dockerfile
+        dest: edu/vikstr/predict/
+        mode: 0777
 
     - name: copy docker-compose weather-prediction module
       copy:
