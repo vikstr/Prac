@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-prediction
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kube-prediction
+  template:
+    metadata:
+      name: kube-prediction
+      labels:
+        app: kube-prediction
+    spec:
+      containers:
+        - name: kube-prediction
+          image: docker-prediction
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: secretsecret

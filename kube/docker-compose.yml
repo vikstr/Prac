@@ -1,0 +1,43 @@
+version: '3'
+services:
+  rbc:
+    image: docker-rbc
+    build:
+      context: ./RbkApp
+      dockerfile: Dockerfile
+    ports:
+      - "8060:8060"
+    depends_on:
+      - dbpostgresql
+  weather:
+    image: docker-weather
+    build:
+      context: ./WeatherApp
+      dockerfile: Dockerfile
+    ports:
+      - "8070:8070"  
+  ml:
+    image: docker-prediction
+    build:
+      context: ./PredictionApp
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"
+  dbpostgresql:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: testdb
+      POSTGRES_USER: adminadmin
+      POSTGRES_PASSWORD: pwdpwd
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@mydomain.com
+      PGADMIN_DEFAULT_PASSWORD: pwdpwd
+    depends_on:
+      - dbpostgresql

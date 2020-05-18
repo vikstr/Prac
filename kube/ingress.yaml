@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+spec:
+  rules:
+  - host: vikstr.kube.rbc
+    http:
+      paths:
+        - backend:
+            serviceName: kube-rbc
+            servicePort: 8060
+  - host: vikstr.kube.weather
+    http:
+      paths:
+      - backend:
+          serviceName: kube-weather
+          servicePort: 8070
+  - host: vikstr.kube.prediction
+    http:
+      paths:
+      - backend:
+          serviceName: kube-prediction
+          servicePort: 8090
