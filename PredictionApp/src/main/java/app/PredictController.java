@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PredictController {
     private Prediction prediction = new Prediction();
 
-    @RequestMapping(value = "/prediction", method = RequestMethod.GET)
+    @RequestMapping(value = "/prediction")
     @ResponseBody
     public Double indexprediction() {
         Double ans = prediction.predict();
