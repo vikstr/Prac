@@ -1,18 +1,19 @@
 version: '3'
 services:
-  rbkapp:
+  rbc:
+    image: docker-rbc
     build:
       context: ./RbkApp
-      dockerfile: Dockerfile
     ports:
-      - "8060:8060"
+      - "8050:8050"
     depends_on:
       - dbpostgresql
     networks:
       vpcbr:
-        ipv4_address: 10.5.0.7
+        ipv4_address: 10.5.0.20
 
-  weatherapp:
+  weather:
+    image: docker-weather
     build:
       context: ./WeatherApp
       dockerfile: Dockerfile
@@ -20,9 +21,10 @@ services:
       - "8070:8070"
     networks:
       vpcbr:
-        ipv4_address: 10.5.0.5
+        ipv4_address: 10.5.0.17
 
-  predictionapp:
+  prediction:
+    image: docker-prediction
     build:
       context: ./PredictionApp
       dockerfile: Dockerfile
@@ -30,7 +32,8 @@ services:
       - "8090:8090"
     networks:
       vpcbr:
-        ipv4_address: 10.5.0.6
+        ipv4_address: 10.5.0.18
+
   dbpostgresql:
     image: postgres
     restart: always
@@ -42,7 +45,8 @@ services:
       POSTGRES_PASSWORD: pwdpwd
     networks:
       vpcbr:
-        ipv4_address: 10.5.0.9
+        ipv4_address: 10.5.0.19
+
 
   pgadmin:
     image: dpage/pgadmin4
@@ -55,10 +59,20 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=postgres
     networks:
       vpcbr:
-        ipv4_address: 10.5.0.10
+        ipv4_address: 10.5.0.21
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.22
 networks:
   vpcbr:
     driver: bridge
     ipam:
       config:
-        - subnet: 10.5.0.0/16
+        - subnet: 10.5.0.16/24

@@ -14,5 +14,8 @@
       </list>
     </option>
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/RbkApp/src/main/resources/db/migration/V002__rbk_table_update.sql" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="11 (2)" project-jdk-type="JavaSDK" />
 </project>
