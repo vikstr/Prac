@@ -70,6 +70,13 @@ services:
     networks:
       vpcbr:
         ipv4_address: 10.5.0.22
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.16
 networks:
   vpcbr:
     driver: bridge
